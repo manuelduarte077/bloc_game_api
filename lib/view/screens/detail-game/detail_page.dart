@@ -1,4 +1,5 @@
 import 'package:bloc_api/model/data_model.dart';
+import 'package:bloc_api/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,48 +30,15 @@ class DetailPage extends StatelessWidget {
                 image: NetworkImage(dataModel.image),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 12,
                     ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Text(
-                            dataModel.title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        if (dataModel.worth == "N/A")
-                          const SizedBox(
-                            height: 12,
-                          ),
-                        if (dataModel.worth != "N/A")
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Text(
-                              dataModel.worth,
-                              style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+                    TopScreenDetail(dataModel: dataModel),
                     SizedBox(
                       height: 24,
                     ),
@@ -96,72 +64,19 @@ class DetailPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 4,
+                      height: 8,
                     ),
                     Text(
                       dataModel.instructions,
-                      style: const TextStyle(),
+                      style: const TextStyle(
+                        letterSpacing: 1,
+                      ),
                     ),
                     SizedBox(
                       height: 24,
                     ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: InkWell(
-                            onTap: () {
-                              launch(dataModel.gamerpower_url);
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 79,
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.purple,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Open in Gamepower",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: InkWell(
-                            onTap: () {
-                              launch(dataModel.open_giveaway_url);
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 79,
-                              margin: const EdgeInsets.all(8),
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.purple,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Get the game",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Widgets de los botones para ver mas detalle del videojuego
+                    ActionsButton(dataModel: dataModel),
                   ],
                 ),
               ),
@@ -169,6 +84,54 @@ class DetailPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TopScreenDetail extends StatelessWidget {
+  const TopScreenDetail({
+    Key? key,
+    required this.dataModel,
+  }) : super(key: key);
+
+  final DataModel dataModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: Text(
+            dataModel.title,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        if (dataModel.worth == "N/A")
+          const SizedBox(
+            height: 12,
+          ),
+        if (dataModel.worth != "N/A")
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Text(
+              dataModel.worth,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
