@@ -1,11 +1,20 @@
-import 'package:bloc_api/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bloc_api/view/widgets/widgets.dart';
 import 'package:bloc_api/bloc/blocs.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
+
+  static const routeName = '/';
+
+  static Route route() {
+    return MaterialPageRoute(
+      builder: (context) => LandingPage(),
+      settings: RouteSettings(name: routeName),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
