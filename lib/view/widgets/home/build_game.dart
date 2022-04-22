@@ -1,39 +1,19 @@
-import 'package:bloc_api/bloc/game_data_bloc.dart';
-import 'package:bloc_api/model/data_model.dart';
-import 'package:bloc_api/view/detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+import 'package:bloc_api/model/data_model.dart';
+import 'package:bloc_api/view/screens/screens.dart';
+
+class BuildGameModel extends StatelessWidget {
+  const BuildGameModel({
+    Key? key,
+    required this.apiResult,
+  }) : super(key: key);
+
+  final List<DataModel> apiResult;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<GameDataBloc, GameDataState>(
-        builder: (context, state) {
-          if (state is GameDataInitialState) {
-            context.read<GameDataBloc>().add(LoadGameDataEvent());
-            return CircularProgressIndicator();
-          } else if (state is GameDataLoadingState) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is GameDataLoadedState) {
-            return buildGameModel(state.apiResult);
-          } else if (state is GameDataErrorState) {
-            return Center(
-              child: Text('Uh oh! Something went wrong!'),
-            );
-          }
-          return Text('Error');
-        },
-      ),
-    );
-  }
-
-  Widget buildGameModel(List<DataModel> apiResult) {
     return ListView.builder(
       padding: EdgeInsets.zero,
       itemCount: apiResult.length,

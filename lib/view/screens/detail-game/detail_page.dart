@@ -9,6 +9,14 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Icon(Icons.favorite_sharp),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -51,7 +59,7 @@ class DetailPage extends StatelessWidget {
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: Colors.green,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             child: Text(
                               dataModel.worth,
