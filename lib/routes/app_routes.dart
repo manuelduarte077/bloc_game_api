@@ -11,6 +11,10 @@ class AppRoutes {
         return LandingPage.route();
       case LandingPage.routeName:
         return LandingPage.route();
+      case PersonScreen.routName:
+        return PersonScreen.route();
+      case FavoritesScreen.routName:
+        return FavoritesScreen.route();
 
       default:
         return _errorRoute();

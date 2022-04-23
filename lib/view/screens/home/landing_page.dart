@@ -11,8 +11,8 @@ class LandingPage extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      builder: (context) => LandingPage(),
-      settings: RouteSettings(name: routeName),
+      builder: (_) => const LandingPage(),
+      settings: const RouteSettings(name: routeName),
     );
   }
 
@@ -23,19 +23,19 @@ class LandingPage extends StatelessWidget {
         builder: (context, state) {
           if (state is GameDataInitialState) {
             context.read<GameDataBloc>().add(LoadGameDataEvent());
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (state is GameDataLoadingState) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is GameDataLoadedState) {
             return BuildGameModel(apiResult: state.apiResult);
           } else if (state is GameDataErrorState) {
-            return Center(
+            return const Center(
               child: Text('Uh oh! Something went wrong!'),
             );
           }
-          return Text('Error');
+          return const Text('Error');
         },
       ),
     );

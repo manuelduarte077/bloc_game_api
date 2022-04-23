@@ -1,7 +1,6 @@
 import 'package:bloc_api/model/data_model.dart';
 import 'package:bloc_api/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   final DataModel dataModel;
@@ -12,9 +11,14 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Icon(Icons.favorite_sharp),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/favorites');
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Icon(Icons.favorite_sharp),
+            ),
           ),
         ],
       ),
