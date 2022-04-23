@@ -11,7 +11,7 @@ void main() {
       create: (context) => GameDataBloc(
         GameRepository(),
       ),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

@@ -1,7 +1,8 @@
-import 'package:bloc_api/model/data_model.dart';
-import 'package:bloc_api/view/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:bloc_api/model/data_model.dart';
+import 'package:bloc_api/view/widgets/widgets.dart';
 
 class DetailPage extends StatelessWidget {
   final DataModel dataModel;
@@ -10,79 +11,139 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Icon(Icons.favorite_sharp),
-          ),
-        ],
+      appBar: CustomAppBar(
+        title: 'Game Detail',
+        tap: dataModel.gamerpower_url != null
+            ? () async {
+                await launch(dataModel.gamerpower_url);
+              }
+            : null,
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: SizedBox(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image(
-                height: 230,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                image: NetworkImage(dataModel.image),
+              IconButton(
+                icon: const Icon(Icons.share, color: Colors.white),
+                onPressed: () {},
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TopScreenDetail(dataModel: dataModel),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      "Game Description",
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      dataModel.description,
-                      style: const TextStyle(),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      "Steps to get it",
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      dataModel.instructions,
-                      style: const TextStyle(
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    // Widgets de los botones para ver mas detalle del videojuego
-                    ActionsButton(dataModel: dataModel),
-                  ],
-                ),
+              IconButton(
+                icon: const Icon(Icons.favorite, color: Colors.white),
+                onPressed: () {},
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.white),
+                onPressed: () {
+                  launch(dataModel.open_giveaway_url);
+                },
+                child: Text('GET THE GAME',
+                    style: Theme.of(context).textTheme.headline3!),
               ),
             ],
           ),
         ),
+      ),
+      body: ContentDetail(
+        dataModel: dataModel,
+      ),
+    );
+  }
+}
+
+class ContentDetail extends StatelessWidget {
+  const ContentDetail({
+    Key? key,
+    required this.dataModel,
+  }) : super(key: key);
+
+  final DataModel dataModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Image(
+              height: 250,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              image: NetworkImage(dataModel.image),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                TopScreenDetail(dataModel: dataModel),
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Game Description',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.description,
+                  style: const TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'Steps to get it',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.instructions,
+                  style: const TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Platforms',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.platforms,
+                  style: const TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
