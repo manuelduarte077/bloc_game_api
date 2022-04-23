@@ -27,38 +27,11 @@ class ActionsButton extends StatelessWidget {
                 color: Colors.purple,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
-                  "Open in Gamepower",
+                  'Open in Gamepower',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Flexible(
-          child: InkWell(
-            onTap: () {
-              launch(dataModel.open_giveaway_url);
-            },
-            child: Container(
-              width: double.infinity,
-              height: 79,
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.purple,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  "Get the game",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),

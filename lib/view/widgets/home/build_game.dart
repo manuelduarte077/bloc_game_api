@@ -16,10 +16,8 @@ class BuildGameModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [Icon(Icons.face)],
-      ),
-      bottomNavigationBar: CustomNavBar(),
+      appBar: const CustomAppBar(title: 'Home'),
+      bottomNavigationBar: const CustomNavBar(),
       body: ListView.builder(
         padding: EdgeInsets.zero,
         itemCount: apiResult.length,

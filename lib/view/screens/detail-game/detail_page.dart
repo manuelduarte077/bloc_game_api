@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:bloc_api/model/data_model.dart';
 import 'package:bloc_api/view/widgets/widgets.dart';
-import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
   final DataModel dataModel;
@@ -9,23 +11,36 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/favorites');
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Icon(Icons.favorite_sharp),
-            ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Container(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.share, color: Colors.white),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Icons.favorite, color: Colors.white),
+                onPressed: () {},
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.white),
+                onPressed: () {
+                  launch(dataModel.open_giveaway_url);
+                },
+                child: Text('GET THE GAME',
+                    style: Theme.of(context).textTheme.headline3!),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image(
                 height: 230,
@@ -43,12 +58,12 @@ class DetailPage extends StatelessWidget {
                       height: 12,
                     ),
                     TopScreenDetail(dataModel: dataModel),
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
-                    Text(
-                      "Game Description",
-                      style: const TextStyle(
+                    const Text(
+                      'Game Description',
+                      style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
@@ -57,17 +72,17 @@ class DetailPage extends StatelessWidget {
                       dataModel.description,
                       style: const TextStyle(),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
-                    Text(
-                      "Steps to get it",
-                      style: const TextStyle(
+                    const Text(
+                      'Steps to get it',
+                      style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text(
@@ -76,7 +91,7 @@ class DetailPage extends StatelessWidget {
                         letterSpacing: 1,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
                     // Widgets de los botones para ver mas detalle del videojuego
