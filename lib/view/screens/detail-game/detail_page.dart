@@ -11,9 +11,17 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Game Detail',
+        tap: dataModel.gamerpower_url != null
+            ? () async {
+                await launch(dataModel.gamerpower_url);
+              }
+            : null,
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,70 +46,104 @@ class DetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Image(
-                height: 230,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                image: NetworkImage(dataModel.image),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TopScreenDetail(dataModel: dataModel),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Text(
-                      'Game Description',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      dataModel.description,
-                      style: const TextStyle(),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    const Text(
-                      'Steps to get it',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      dataModel.instructions,
-                      style: const TextStyle(
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    // Widgets de los botones para ver mas detalle del videojuego
-                    ActionsButton(dataModel: dataModel),
-                  ],
-                ),
-              ),
-            ],
+      body: ContentDetail(
+        dataModel: dataModel,
+      ),
+    );
+  }
+}
+
+class ContentDetail extends StatelessWidget {
+  const ContentDetail({
+    Key? key,
+    required this.dataModel,
+  }) : super(key: key);
+
+  final DataModel dataModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Image(
+              height: 250,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              image: NetworkImage(dataModel.image),
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                TopScreenDetail(dataModel: dataModel),
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Game Description',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.description,
+                  style: const TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'Steps to get it',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.instructions,
+                  style: const TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Platforms',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dataModel.platforms,
+                  style: const TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

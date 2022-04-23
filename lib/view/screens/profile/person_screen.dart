@@ -15,11 +15,14 @@ class PersonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      bottomNavigationBar: const CustomNavBar(),
-      body: const Center(
-        child: Text('PersonScreen'),
+    return const Scaffold(
+      appBar: CustomAppBar(title: 'Profile'),
+      bottomNavigationBar: CustomNavBar(),
+      body: Center(
+        child: Text(
+          'Profile',
+          style: TextStyle(fontSize: 35.0),
+        ),
       ),
     );
   }

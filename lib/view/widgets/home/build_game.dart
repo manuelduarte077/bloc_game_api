@@ -16,7 +16,7 @@ class BuildGameModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Home'),
+      appBar: const CustomAppBarHome(),
       bottomNavigationBar: const CustomNavBar(),
       body: ListView.builder(
         padding: EdgeInsets.zero,
@@ -42,9 +42,9 @@ class BuildGameModel extends StatelessWidget {
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(10),
                       child: Image(
-                        height: 230,
+                        height: 250,
                         width: MediaQuery.of(context).size.width / 1.05,
                         fit: BoxFit.cover,
                         image: NetworkImage(dataModel.image),
@@ -54,17 +54,17 @@ class BuildGameModel extends StatelessWidget {
                       bottom: 0,
                       child: GlassmorphicContainer(
                         width: MediaQuery.of(context).size.width / 1.05,
-                        height: 120,
+                        height: 100,
                         border: 0,
                         borderRadius: 0,
-                        blur: 20,
+                        blur: 25,
                         alignment: Alignment.bottomCenter,
                         linearGradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
+                            const Color(0xffFFFFFF).withOpacity(1.0),
                             const Color(0xffFFFFFF).withOpacity(0.1),
-                            const Color(0xffFFFFFF).withOpacity(0.05),
                           ],
                           stops: const [
                             0.1,
@@ -75,8 +75,8 @@ class BuildGameModel extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            const Color(0xffFFFFFF).withOpacity(0.5),
-                            const Color(0xffFFFFFF).withOpacity(0.5),
+                            const Color(0xffFFFFFF).withOpacity(0.1),
+                            const Color(0xffFFFFFF).withOpacity(0.1),
                           ],
                         ),
                         child: Padding(
@@ -90,8 +90,9 @@ class BuildGameModel extends StatelessWidget {
                                 child: Text(
                                   dataModel.title,
                                   style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -103,7 +104,9 @@ class BuildGameModel extends StatelessWidget {
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
+                                  color: Colors.black,
                                 ),
+                                softWrap: true,
                               ),
                             ],
                           ),
@@ -119,4 +122,34 @@ class BuildGameModel extends StatelessWidget {
       ),
     );
   }
+}
+
+class CustomAppBarHome extends StatelessWidget with PreferredSizeWidget {
+  const CustomAppBarHome({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black, size: 35),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.pushNamed(context, '/favorites');
+            },
+          ),
+        ],
+        automaticallyImplyLeading: false,
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(50.0);
 }

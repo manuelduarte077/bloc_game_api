@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  final String title;
+  final String? title;
+  final tap;
 
   const CustomAppBar({
     Key? key,
-    required this.title,
+    this.title,
+    this.tap,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           vertical: 10,
         ),
         child: Text(
-          title,
+          title!,
           style: Theme.of(context)
               .textTheme
               .headline2!
@@ -44,6 +46,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             Navigator.pushNamed(context, '/favorites');
           },
         ),
+        if (title == 'Game Detail')
+          IconButton(
+            icon: const Icon(Icons.open_in_new),
+            onPressed: tap,
+          ),
       ],
     );
   }
