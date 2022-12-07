@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: theme(),
+      theme: ThemeData(
+        useMaterial3: true,
+        textTheme: TextTheme(),
+      ),
       initialRoute: LandingPage.routeName,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );

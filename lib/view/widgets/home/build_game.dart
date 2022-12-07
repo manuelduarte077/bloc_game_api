@@ -94,10 +94,12 @@ class BuildGameModel extends StatelessWidget {
                                       dataModel.title,
                                       style: const TextStyle(
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         color: Colors.black,
                                       ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
+
                                   ),
                                   const SizedBox(
                                     height: 4,
