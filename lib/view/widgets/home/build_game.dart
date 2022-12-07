@@ -3,7 +3,6 @@ import 'package:glassmorphism/glassmorphism.dart';
 
 import 'package:bloc_api/model/data_model.dart';
 import 'package:bloc_api/view/screens/screens.dart';
-import 'package:bloc_api/view/widgets/widgets.dart';
 
 class BuildGameModel extends StatelessWidget {
   const BuildGameModel({
@@ -18,7 +17,6 @@ class BuildGameModel extends StatelessWidget {
     return SafeArea(
       bottom: false,
       child: Scaffold(
-        bottomNavigationBar: const CustomNavBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
           child: ListView.builder(
