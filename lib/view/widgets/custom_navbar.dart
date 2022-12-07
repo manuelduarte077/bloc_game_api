@@ -19,9 +19,9 @@ class CustomNavBar extends StatelessWidget {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.person, color: Colors.white),
+              icon: const Icon(Icons.favorite, color: Colors.white),
               onPressed: () {
-                Navigator.pushNamed(context, '/person');
+                Navigator.pushNamed(context, '/favorites');
               },
             ),
           ],
