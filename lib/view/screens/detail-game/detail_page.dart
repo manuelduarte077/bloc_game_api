@@ -6,6 +6,7 @@ import 'package:bloc_api/view/widgets/widgets.dart';
 
 class DetailPage extends StatelessWidget {
   final DataModel dataModel;
+
   const DetailPage({Key? key, required this.dataModel}) : super(key: key);
 
   @override
@@ -35,12 +36,14 @@ class DetailPage extends StatelessWidget {
                 onPressed: () {},
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () {
                   launch(dataModel.open_giveaway_url);
                 },
-                child: Text('GET THE GAME',
-                    style: Theme.of(context).textTheme.headline3!),
+                child: Text(
+                  'GET THE GAME',
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
             ],
           ),
@@ -64,86 +67,89 @@ class ContentDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Image(
-              height: 250,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              image: NetworkImage(dataModel.image),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Image(
+                height: 250,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                image: NetworkImage(dataModel.image),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 12,
-                ),
-                TopScreenDetail(dataModel: dataModel),
-                const SizedBox(
-                  height: 24,
-                ),
-                const Text(
-                  'Game Description',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 12,
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  dataModel.description,
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                const Text(
-                  'Steps to get it',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                  TopScreenDetail(dataModel: dataModel),
+                  const SizedBox(
+                    height: 24,
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  dataModel.instructions,
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                const Text(
-                  'Platforms',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                  const Text(
+                    'Game Description',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  dataModel.platforms,
-                  style: const TextStyle(
-                    fontSize: 22,
+                  const SizedBox(
+                    height: 8,
                   ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-              ],
+                  Text(
+                    dataModel.description,
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const Text(
+                    'Steps to get it',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    dataModel.instructions,
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  const Text(
+                    'Platforms',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    dataModel.platforms,
+                    style: const TextStyle(
+                      fontSize: 22,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

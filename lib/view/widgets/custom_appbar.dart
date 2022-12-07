@@ -23,10 +23,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         child: Text(
           title!,
-          style: Theme.of(context)
-              .textTheme
-              .headline2!
-              .copyWith(color: Colors.white),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       leading: IconButton(

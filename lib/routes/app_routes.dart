@@ -9,8 +9,6 @@ class AppRoutes {
     switch (settings.name) {
       case '/':
         return LandingPage.route();
-      case PersonScreen.routName:
-        return PersonScreen.route();
       case FavoritesScreen.routName:
         return FavoritesScreen.route();
 
