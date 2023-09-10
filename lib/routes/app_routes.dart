@@ -1,5 +1,6 @@
 import 'package:bloc_api/utils/error_route.dart';
 import 'package:bloc_api/view/screens/screens.dart';
+
 import 'package:flutter/material.dart';
 
 class AppRoutes {
