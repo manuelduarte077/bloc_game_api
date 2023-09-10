@@ -33,12 +33,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
           });
         },
         selectedIndex: currentPageIndex,
-        ),
+      ),
       body: [
         LandingPage(),
         FavoritesScreen(),
       ][currentPageIndex],
     );
-
   }
 }

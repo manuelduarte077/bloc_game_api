@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final tap;
 
@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           vertical: 10,
         ),
         child: Text(
-          title!,
+          title ?? '',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 24,

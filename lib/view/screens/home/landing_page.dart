@@ -19,6 +19,9 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Game Power'),
+      ),
       body: BlocBuilder<GameDataBloc, GameDataState>(
         builder: (context, state) {
           if (state is GameDataInitialState) {
