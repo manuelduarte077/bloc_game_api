@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:bloc_api/model/data_model.dart';
-import 'package:bloc_api/view/widgets/widgets.dart';
 
 class DetailPage extends StatelessWidget {
   final DataModel dataModel;
@@ -11,34 +10,41 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Uri _url = Uri.parse(dataModel.gamerpower_url);
+    final Uri _openUrl = Uri.parse(dataModel.open_giveaway_url);
+
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Game Detail',
-        tap: dataModel.gamerpower_url != null
-            ? () async {
-                await launch(dataModel.gamerpower_url);
-              }
-            : null,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => launchUrl(_url),
+            icon: const Icon(Icons.open_in_new),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/favorites');
+            },
+            icon: const Icon(Icons.favorite),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
         child: SizedBox(
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                icon: const Icon(Icons.share, color: Colors.white),
+                icon: const Icon(Icons.share),
                 onPressed: () {},
               ),
               IconButton(
-                icon: const Icon(Icons.favorite, color: Colors.white),
+                icon: const Icon(Icons.favorite),
                 onPressed: () {},
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () {
-                  launch(dataModel.open_giveaway_url);
+                  launchUrl(_openUrl);
                 },
                 child: Text(
                   'GET THE GAME',
